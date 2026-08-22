@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; color-scheme: dark; }
+
+  body {
+    @apply bg-background text-white font-body antialiased;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 { @apply font-display font-bold tracking-tight text-white; }
+
+  input, textarea, select {
+    @apply bg-surface border border-border text-white placeholder-muted
+           rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200
+           focus:border-primary focus:ring-4 focus:ring-primary/10;
+  }
+}
+
+@layer components {
+  /* Navigation */
+  .gt-navbar {
+    @apply sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5;
+  }
+
+  /* Cards */
+  .gt-card {
+    @apply bg-surface border border-border rounded-2xl shadow-card transition-all duration-300;
+  }
+  .gt-card-hover {
+    @apply hover:border-white/20 hover:shadow-card-hover hover:-translate-y-1;
+  }
+  
+  .glass-card {
+    @apply bg-glass backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-xl font-semibold text-sm
+           bg-primary hover:bg-primary-hover text-white
+           transition-all duration-200 active:scale-95 shadow-glow-primary;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-xl font-semibold text-sm
+           bg-surface hover:bg-surface-hover border border-border
+           text-white transition-all duration-200 active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 rounded-xl font-medium text-sm text-muted
+           hover:text-white hover:bg-surface transition-all duration-200 active:scale-95;
+  }
+
+  /* Badges */
+  .gt-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md;
+  }
+  .gt-badge-primary { @apply gt-badge bg-primary/20 text-primary border border-primary/20; }
+  .gt-badge-dark { @apply gt-badge bg-black/60 text-white border border-white/10; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+/* Page Transition Helpers */
+.page-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+}
+
+/* Animations utility */
+.animate-enter {
+  @apply animate-slide-up opacity-0;
+}
+
+/* Map Tiles Dark Mode */
+.map-tiles-dark {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Leaflet Popup Overrides for Dark Mode */
+.gt-map-popup .leaflet-popup-content-wrapper {
+  @apply bg-transparent shadow-none p-0;
+}
+.gt-map-popup .leaflet-popup-content {
+  @apply m-0;
+}
+.gt-map-popup .leaflet-popup-tip {
+  @apply bg-surface border-t border-l border-border;
+}
